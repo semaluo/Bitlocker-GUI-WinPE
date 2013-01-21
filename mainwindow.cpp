@@ -8,9 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"", tr("Files (*.*)"));
+    ui->comboBox->addItem("Item1");
+    ui->comboBox->addItem("Item2");
+    ui->comboBox->addItem("Item3");
+    ui->comboBox->addItem("Item4");
+    ui->comboBox->addItem("Item5");
+
     QProcess process;
-    process.start("cmd /c dir C:\\Windows");
+    process.start("cmd /c \"dir c:\\windows\\system32\"");
     process.waitForFinished(-1);
     QByteArray out = process.readAllStandardOutput();
 
@@ -27,3 +32,16 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"),"", tr("Files (*.*)"));
+    ui->lineEdit->setText(fileName);
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    QString current = ui->comboBox->currentText();
+    QMessageBox::information(this, "title", current);
+    ui->textBrowser->tex       html = ui->textBrowser->html + "heu";
+}
