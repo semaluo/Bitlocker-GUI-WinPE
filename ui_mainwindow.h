@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 22. Jan 13:23:43 2013
+** Created: Wed 23. Jan 11:37:23 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -37,6 +37,7 @@ public:
     QComboBox *comboBox;
     QTextBrowser *textBrowser;
     QPushButton *pushButton_2;
+    QComboBox *comboBox_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -77,13 +78,13 @@ public:
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
-        gridLayout_2->addWidget(label, 0, 0, 1, 2);
+        gridLayout_2->addWidget(label, 0, 0, 1, 3);
 
         lineEdit = new QLineEdit(centralWidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setReadOnly(false);
 
-        gridLayout_2->addWidget(lineEdit, 1, 0, 1, 1);
+        gridLayout_2->addWidget(lineEdit, 1, 0, 1, 2);
 
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
@@ -93,7 +94,7 @@ public:
         sizePolicy1.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
         pushButton->setSizePolicy(sizePolicy1);
 
-        gridLayout_2->addWidget(pushButton, 1, 1, 1, 1);
+        gridLayout_2->addWidget(pushButton, 1, 2, 1, 1);
 
         comboBox = new QComboBox(centralWidget);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
@@ -116,14 +117,19 @@ public:
         textBrowser->setOverwriteMode(false);
         textBrowser->setTextInteractionFlags(Qt::TextBrowserInteraction);
 
-        gridLayout_2->addWidget(textBrowser, 4, 0, 1, 2);
+        gridLayout_2->addWidget(textBrowser, 4, 0, 1, 3);
 
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         sizePolicy1.setHeightForWidth(pushButton_2->sizePolicy().hasHeightForWidth());
         pushButton_2->setSizePolicy(sizePolicy1);
 
-        gridLayout_2->addWidget(pushButton_2, 3, 1, 1, 1);
+        gridLayout_2->addWidget(pushButton_2, 3, 2, 1, 1);
+
+        comboBox_2 = new QComboBox(centralWidget);
+        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
+
+        gridLayout_2->addWidget(comboBox_2, 3, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
 
