@@ -11,8 +11,8 @@ QString mText;
 QFile bfile;
 QString drive;
 QString endcommand;
-QString suspend = ("manage-bde.exe -protectors -disable ");
-QString unlock = ("manage-bde.exe -unlock -recoverypassword ");
+QString suspend = ("-protectors -disable ");
+QString unlock = ("manage-bde -unlock -recoverypassword ");
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -84,9 +84,9 @@ void MainWindow::on_pushButton_clicked()
     mText = in.readAll();
     bfile.close();
 
-    ui->textBrowser->insertHtml(mText);
-    QMessageBox::information(this, "filename", fileName);
-    QMessageBox::information(this, "mText", mText);
+    //ui->textBrowser->insertHtml(mText);
+    //QMessageBox::information(this, "filename", fileName);
+    //QMessageBox::information(this, "mText", mText);
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -95,56 +95,31 @@ void MainWindow::on_pushButton_2_clicked()
     {
         drive = ui->comboBox_2->currentText() + ":";
         endcommand = (suspend + " " + drive);
-        ui->textBrowser->insertHtml(endcommand);
-        QMessageBox::information(this, "endcommand", endcommand);
-        //QMessageBox::information(this, "title", "Suspend...");
-        QMessageBox::information(this, "prosess", endcommand);
-        QProcess process;
-        //process.start(endcommand);
-        process.start("cmd", QStringList() << endcommand);
-        //process.waitForFinished(-1);
-        QByteArray out = process.readAll();
-        ui->textBrowser->insertHtml(out);
+
+        ui->textBrowser->setText(endcommand);
+
     }
 
     if (ui->comboBox->currentText() == ("Unlock"))
     {
         drive = ui->comboBox_2->currentText() + ":";
         endcommand = (unlock + mText + " " + drive);
-        QProcess process;
+        ui->textBrowser->setText(endcommand);
 
-        //process.start("cmd", QStringList() << endcommand);
-        //process.start("cmd");
-        //process.waitForFinished(-1);
-        //QByteArray out = process.readAll();
+        //system("manage-bde -protectors -disable C:");
+        //system();
 
 
-        system("cmd");
-            //process.waitForFinished(-1);
-            //QByteArray out = process.readAll();
-        //QByteArray out = process.readAllStandardOutput();
-        //ui->textBrowser->insertHtml(out);
-
-        QMessageBox::information(this, "title", mText);
-        //QFileSystemWatcher
-
-        //QString drive = ui->comboBox_2->currentText() + ":";
-        QMessageBox::information(this, "title", drive);
-        //QMessageBox::information(this, "title", "Unlock mæ");
-        //endcommand = (unlock + mText + drive);
-        QMessageBox::information(this, "title", endcommand);
-        //ui->textBrowser->insertHtml("Hei fra unlock ");
 
 
     }
 
-   /* if (ui->comboBox->currentText() == ("Suspend"))
-    {
-        QMessageBox::information(this, "title", "hei på deg");
-    } */
+   /* QObject *parent;
+    QString program = "c:/windows/system32/manage-bde.exe";
+    QStringList arguments;
+    arguments << "-protectors" << "-disable" << "C:";
 
-    //QString currentcombo = ui->comboBox->currentText();
-    //QMessageBox::information(this, "title", currentcombo);
+    QProcess *myProcess = new QProcess(parent);
+    myProcess->start(program, arguments); */
 
-    //ui->textBrowser->setPlainText("");
 }
