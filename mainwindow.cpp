@@ -5,14 +5,15 @@
 #include <QProcess>
 #include <QTextStream>
 #include <QFile>
+#include <stdlib.h>
 
 QString fileName;
 QString mText;
 QFile bfile;
 QString drive;
 QString endcommand;
-QString suspend = ("-protectors -disable ");
-QString unlock = ("manage-bde -unlock -recoverypassword ");
+QString suspend = ("manage-bde.exe -protectors -disable ");
+QString unlock = ("manage-bde.exe -unlock -recoverypassword ");
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,11 +21,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->comboBox->addItem("Suspend");
     ui->comboBox->addItem("Unlock");
-    /*ui->comboBox->addItem("Item3");
-    ui->comboBox->addItem("Item4");
-    ui->comboBox->addItem("Item5");*/
+    ui->comboBox->addItem("Suspend");
 
     ui->comboBox_2->addItem("A");
     ui->comboBox_2->addItem("B");
@@ -52,8 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_2->addItem("X");
     ui->comboBox_2->addItem("Y");
     ui->comboBox_2->addItem("Z");
-
-
+    //ui->comboBox_2->setItemText("D");
 
 
     /*QProcess process;
@@ -98,6 +95,11 @@ void MainWindow::on_pushButton_2_clicked()
 
         ui->textBrowser->setText(endcommand);
 
+        system(qPrintable(endcommand));
+        //system("pause");
+        //system("dir C:\\test\\manage-bde.exe");
+        //system ("C:\\Windows\\System32\manage-bde.exe");
+        QMessageBox::information(this, "", "\"");
     }
 
     if (ui->comboBox->currentText() == ("Unlock"))
@@ -105,7 +107,7 @@ void MainWindow::on_pushButton_2_clicked()
         drive = ui->comboBox_2->currentText() + ":";
         endcommand = (unlock + mText + " " + drive);
         ui->textBrowser->setText(endcommand);
-
+        system(qPrintable(endcommand));
         //system("manage-bde -protectors -disable C:");
         //system();
 

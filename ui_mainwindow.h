@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 23. Jan 11:37:23 2013
+** Created: Thu 7. Feb 14:54:18 2013
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -128,6 +128,7 @@ public:
 
         comboBox_2 = new QComboBox(centralWidget);
         comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
+        comboBox_2->setStyleSheet(QString::fromUtf8(""));
 
         gridLayout_2->addWidget(comboBox_2, 3, 1, 1, 1);
 
@@ -144,6 +145,9 @@ public:
         lineEdit->setPlaceholderText(QString());
         pushButton->setText(QApplication::translate("MainWindow", "Browse", 0, QApplication::UnicodeUTF8));
         pushButton_2->setText(QApplication::translate("MainWindow", "Do it!", 0, QApplication::UnicodeUTF8));
+#ifndef QT_NO_ACCESSIBILITY
+        comboBox_2->setAccessibleDescription(QString());
+#endif // QT_NO_ACCESSIBILITY
         Q_UNUSED(MainWindow);
     } // retranslateUi
 
