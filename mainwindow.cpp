@@ -21,9 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    //Legger til Item i comboboxene.
     ui->comboBox->addItem("Unlock");
     ui->comboBox->addItem("Suspend");
-
     ui->comboBox_2->addItem("A");
     ui->comboBox_2->addItem("B");
     ui->comboBox_2->addItem("C");
@@ -51,13 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_2->addItem("Y");
     ui->comboBox_2->addItem("Z");
     //ui->comboBox_2->setItemText("D");
-
-
-    /*QProcess process;
-    process.start("cmd /c ");
-    process.waitForFinished(-1);
-    QByteArray out = process.readAllStandardOutput();
-    ui->textBrowser->insertHtml(out);*/
 }
 
 MainWindow::~MainWindow()
@@ -74,54 +67,25 @@ void MainWindow::on_pushButton_clicked()
 
     if(!bfile.open(QFile::ReadOnly | QFile::Text))
     {
-        QMessageBox::information(this, "lol", "can't read");
+        QMessageBox::critical(this, "Error", "have not selected file or file is unreadable");
     }
-
     QTextStream in (&bfile);
     mText = in.readAll();
     bfile.close();
-
-    //ui->textBrowser->insertHtml(mText);
-    //QMessageBox::information(this, "filename", fileName);
-    //QMessageBox::information(this, "mText", mText);
 }
 
 void MainWindow::on_pushButton_2_clicked()
 {
+    drive = ui->comboBox_2->currentText() + ":";
     if (ui->comboBox->currentText() == ("Suspend"))
     {
-        drive = ui->comboBox_2->currentText() + ":";
         endcommand = (suspend + " " + drive);
-
-        ui->textBrowser->setText(endcommand);
-
-        system(qPrintable(endcommand));
-        //system("pause");
-        //system("dir C:\\test\\manage-bde.exe");
-        //system ("C:\\Windows\\System32\manage-bde.exe");
-        QMessageBox::information(this, "", "\"");
     }
 
     if (ui->comboBox->currentText() == ("Unlock"))
     {
-        drive = ui->comboBox_2->currentText() + ":";
         endcommand = (unlock + mText + " " + drive);
-        ui->textBrowser->setText(endcommand);
-        system(qPrintable(endcommand));
-        //system("manage-bde -protectors -disable C:");
-        //system();
-
-
-
-
     }
-
-   /* QObject *parent;
-    QString program = "c:/windows/system32/manage-bde.exe";
-    QStringList arguments;
-    arguments << "-protectors" << "-disable" << "C:";
-
-    QProcess *myProcess = new QProcess(parent);
-    myProcess->start(program, arguments); */
-
+    ui->textBrowser->setText(endcommand);
+    system(qPrintable(endcommand));
 }
